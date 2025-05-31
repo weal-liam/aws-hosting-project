@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: MAVERICK_CODE
+  labels:
+    app: MAVERICK_CODE
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: MAVERICK_CODE
+  template:
+    metadata:
+      labels:
+        app: MAVERICK_CODE
+    spec:
+      containers:
+      - name: MAVERICK_CODE
+        image: node-app:latest
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "256Mi"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 10000
