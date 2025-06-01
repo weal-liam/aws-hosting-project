@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: MAVERICK_CODE
-        image: node-app:latest
+        image: MAV-app:latest
         resources:
           requests:
             cpu: "200m"
