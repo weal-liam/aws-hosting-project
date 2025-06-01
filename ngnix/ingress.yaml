@@ -6,7 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: node.local
+  - host: mav_co.com
     http:
       paths:
       - path: /
@@ -15,4 +15,4 @@ spec:
           service:
             name: MAVERICK_CODE-service
             port:
-              number: 10000
+              number: 80
