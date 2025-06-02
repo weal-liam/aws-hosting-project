@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: MAVERICK_CODE
+  name: maverick_code
   labels:
-    app: MAVERICK_CODE
+    app: maverick_code
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: MAVERICK_CODE
+      app: maverick_code
   template:
     metadata:
       labels:
-        app: MAVERICK_CODE
+        app: maverick_code
     spec:
       containers:
-      - name: MAVERICK_CODE
-        image: MAV-app:latest
+      - name: maverick_code
+        image: mav-app:latest
         resources:
           requests:
             cpu: "200m"
