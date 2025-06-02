@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: maverick_code
+  name: maverick-code
   labels:
-    app: maverick_code
+    app: maverick-code
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: maverick_code
+      app: maverick-code
   template:
     metadata:
       labels:
-        app: maverick_code
+        app: maverick-code
     spec:
       containers:
-      - name: maverick_code
+      - name: maverick-code
         image: mav-app:latest
         resources:
           requests:

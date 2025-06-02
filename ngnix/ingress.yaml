@@ -13,6 +13,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: maverick_code-service
+            name: maverick-code-service
             port:
               number: 80
