@@ -30,7 +30,7 @@ const homepage = async (req, res) => {
             {
                 params: {
                     count: 12,
-                    client_id: process.env.UNSPLASH_ACCESS_KEY
+                    client_id: qUu_Ayf9uKU2BXz0F-ZxbwG8O66HHR4yu4BN4b4QYt0//process.env.UNSPLASH_ACCESS_KEY
                 }
             }
         );
@@ -51,7 +51,7 @@ const services = async(req, res) => {
             {
                 params: {
                     count: 12,
-                    client_id: process.env.UNSPLASH_ACCESS_KEY
+                    client_id: qUu_Ayf9uKU2BXz0F-ZxbwG8O66HHR4yu4BN4b4QYt0//process.env.UNSPLASH_ACCESS_KEY
                 }
             }
         );
