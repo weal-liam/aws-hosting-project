@@ -13,8 +13,7 @@ const remarks = async (req, res) => {
         {
             'name': 'Remark 1',
             'description': `Please enjoy the user experience from home to about us
-            and be mindful that our team is working more that will be coming soon.
-            Feel free to leave a comment`
+            and be mindful that our team is working on more content that will be coming soon.`
         }
     ];
     res.status(200).json({ url: `${req.url}`, data });
