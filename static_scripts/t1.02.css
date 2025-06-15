@@ -1,82 +1,382 @@
-body{
+:root {
+    --main-gap: 16px;
+    --main-radius: 40px;
+    --main-color: #aa1c03;
+    --main-bg: rgba(241, 223, 201, .3);
+}
+
+html {
+    font-size: clamp(15px, 2vw, 18px);
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+}
+
+header {
+    color: var(--main-color);
+    border-bottom: solid 1px;
+    padding: 1%;
+}
+
+header img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 12px;
+    display: block;
+}
+
+container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3%;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+main, main#main {
+    flex: 1 0 auto;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow-y: auto;
+    padding-bottom: 2rem;
+    margin: 0 auto;
+    font-size: 1rem;
+}
+
+.info {
     display: grid;
-    gap: 5px;
-    margin: 14px;
-    grid-template-columns: repeat(3,1fr);
-    grid-template-rows: 3fr auto auto 3fr;
-    grid-template-areas: 
-        "header header header"
-        "nav-bar nav-bar nav-bar"
-        "main main main"
-        "main main main"
-        "footer footer footer"
-    ;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--main-gap);
+    width: 100%;
+    margin-bottom: 2rem;
+    justify-items: stretch;
+    align-items: stretch;
 }
-header{
+
+.div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--main-bg);
+    border-radius: var(--main-radius);
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 0;
+    min-height: 200px;
+    width: 100%;
+}
+
+.info img, .div img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    border-radius: 20px;
+}
+
+.contact-card {
+    border-radius: var(--main-radius, 40px);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    padding: 18px 12px;
+    margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    grid-area: header;
-    color: #aa1c03;
-    background-color: aqua;
+    min-height: 220px;
+    transition: box-shadow 0.2s;
 }
-nav{
-    grid-area: nav-bar;
+.contact-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+.contact-card-inner {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 100px;
 }
-main{
-    grid-area: main;
-    background-color: chocolate;
+
+.contact-card-inner .contact-photo {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: block;
 }
-footer{
-    grid-area: footer;
+
+.contact-name {
+    margin: 0 0 8px 0;
 }
+
+.contact-address {
+    margin: 0 0 4px 0;
+    color: #555;
+}
+.contact-contact {
+    margin: 0;
+    color: #888;
+    font-size: 0.95em;
+}
+
+footer {
+    flex-shrink: 0;
+    background: #f8f8f8;
+    text-align: center;
+    padding: 1rem 0;
+    border-top: 1px solid #ccc;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    font-size: 1rem;
+}
+
 ul {
     display: block;
     list-style-type: none;
     padding: 0px;
 }
-li:hover{
+
+li:hover, a:focus {
     background-color: aliceblue;
-    font-size: larger;
+    font-size: 1.2rem;
     cursor: pointer;
+    outline: 2px solid var(--main-color);
+    outline-offset: 2px;
 }
-a{
+
+a {
     text-decoration: none;
-    color:black;
+    color: black;
+    font-size: 1.1rem;
 }
-a:hover{
+
+a:hover {
     color: lightsalmon;
-    text-decoration: underline lightsalmon 2px;
+    text-decoration: none lightsalmon 2px;
 }
-input{
-    width: 350px;
+
+input {
+    width: 75%;
     height: 10px;
     border-radius: 40px;
     padding: 15px 15px 15px 15px;
     border-bottom: 1px solid;
     margin-bottom: 10px;
-    transform: translate(60px);
     text-align: center;
+    font-size: 1rem;
 }
-label{
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+label {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: rgb(46, 90, 75);
     text-transform: uppercase;
     font-weight: 500;
+    font-size: 1rem;
 }
-button{
+
+button {
     width: 300px;
     height: 40px;
     border-radius: 40px;
     background-color: darkslategrey;
+    font-size: 1rem;
 }
-button:hover{
+
+button:hover, button:focus {
     cursor: pointer;
+    outline: 2px solid var(--main-color);
+    outline-offset: 2px;
+}
+
+.nav-link.active {
+    background-color:rgba(248, 207, 158, 0.3); 
+    border-radius: 8px;       
+    padding: 1%;
+    border: none;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+/* Modal Content */
+.modal-content {
+    background: #fff;
+    padding: 2rem 1.5rem;
+    border-radius: var(--main-radius, 24px);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    min-width: 0;
+    max-width: 95vw;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.modal-content h2 {
+    color: var(--main-color, #aa1c03);
+    margin-bottom: 1rem;
+}
+
+.modal-content input[type="text"] {
+    width: 100%;
+    height: 48px;
+    padding: 0 1em;
+    margin-bottom: 1.2em;
+    border-radius: 12px;
+    border: 1.5px solid #ccc;
+    font-size: 1.1rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.modal-content input[type="text"]:focus {
+    border-color: var(--main-color, #aa1c03);
+    outline: none;
+    background: #fffbe9;
+}
+
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+    align-items: stretch;
+}
+
+.modal-content button {
+    padding: 0.5em 1.5em;
+    border-radius: 24px;
+    border: none;
+    background: var(--main-color, #aa1c03);
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modal-content button#modal-close {
+    background: #888;
+}
+
+@media (min-width: 500px) {
+    .modal-content {
+        max-width: 400px;
+    }
+    .modal-actions {
+        flex-direction: row;
+        gap: 1em;
+    }
+    .modal-content button {
+        width: auto;
+    }
+}
+
+@media (max-width: 500px) {
+    .modal-content {
+        padding: 1rem 0.5rem;
+        min-width: 0;
+    }
+    .modal-content input[type="text"] {
+        width: 100%;
+    }
+}
+
+/* Tablet styles */
+@media screen and (min-width: 600px) {
+    .div {
+        width: 45vw;
+        max-width: 340px;
+    }
+    nav {
+        gap: 5%;
+        font-size: 1.2rem;
+    }
+    input {
+        width: 350px;
+        font-size: 1.1rem;
+    }
+    button, label, footer, main, .div {
+        font-size: 1.1rem;
+    }
+}
+
+/* Desktop styles */
+@media screen and (min-width: 992px) {
+    body {
+        display: grid;
+        gap: 5px;
+        margin: 14px;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas:
+            "header header header"
+            "main main main"
+            "footer footer footer";
+        min-height: 100vh;
+        font-size: 1.1rem;
+    }
+    header {
+        grid-area: header;
+        display: grid;
+        grid-template-areas: "h1 space nav-bar";
+        grid-template-columns: 1fr auto 1fr;
+        border-bottom: solid 1px;
+    }
+    nav {
+        grid-area: nav-bar;
+        gap: 10%;
+        font-size: 1.3rem;
+    }
+    main, main#main {
+        grid-area: main;
+        max-width: 1200px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+    }
+    .div {
+        width: 30vw;
+        max-width: 350px;
+        font-size: 1.1rem;
+    }
+    footer {
+        grid-area: footer;
+        font-size: 1.1rem;
+    }
 }

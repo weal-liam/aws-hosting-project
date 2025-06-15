@@ -1,33 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Maverick_CODE</title>
         <link rel="stylesheet" href="/static_scripts/t1.02.css">
+        <link rel="stylesheet" href="/static_scripts/bootstrap-grid.min.css">
     </head>
-    <body>
+    <body class="container">
         <header>
-            <h1>MAV_COM</h1>
-            <img src="/static_files/office.png" alt="logo">
+			<container>
+            <img src="/static_files/vector-icon-of-tea-cup.jpg" alt="logo">
+			<h1>MAVerikCOMmunytea</h1>
+			</container>
+			<nav>
+				<a href="#/home" id="nav-home" class="nav-link">HOME</a>
+				<a href="#/services" id="nav-services" class="nav-link">SERVICES</a>
+				<a href="#/contacts" id="nav-contacts" class="nav-link">CONTACTS</a>
+				<a href="#/about-us" id="nav-about" class="nav-link">ABOUT US</a>
+			</nav>
         </header>
-        <nav>
-            <a href="">HOME</a>
-             <a href="">SERVICES</a>
-              <a href="">CONTACTS</a>
-               <a href="">ABOUT US</a>
-        </nav>
-        <aside>
-        </aside>
-        <main>
-            <ul id="messages"></ul>
-            <label id="msg" for="in">MESSAGE</label>
-            <input type="text" id="in">
-            <p><button id="button">SEND</button></p>
-        </main>
+        <div id="custom-modal" class="modal-overlay" style="display:none;">
+                <div class="modal-content">
+                    <h2 id = 'title'>Notification</h2>
+                    <form id="modal-form">
+                        <input id="modal-input" type="text" name="info" placeholder="Enter info..." required>
+                        <div class="modal-actions">
+                            <button id="modal-submit" type="submit">Submit</button>
+                            <button id="modal-close" type="button">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <main id="main">
+		</main>
         <footer>
             Maverick Community 2025 
         </footer>
          <script src="/socket.io/socket.io.js"></script>
          <script src="/static_scripts/socket.js"></script>
+         <script src="/static_scripts/t1-api.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </body>
 </html>

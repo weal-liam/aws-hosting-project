@@ -4,19 +4,39 @@ const http = require('http');
 const {Server} =require('socket.io');
 const rateLimit = require('express-rate-limit');
 const cors = require('cors');
-const { default: helmet } = require('helmet');
+const helmet = require('helmet');
 const morgan = require('morgan');
+const router = require('./routes');
+require('dotenv').config();
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
 app.use(express.static(path.join(__dirname)))
+app.use(express.urlencoded({ extended: true }));
 
 app.set('views',path.join(__dirname,'views'))
 app.set('view engine','ejs')
 
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        imgSrc: ["'self'", "data:", "https://images.unsplash.com"],
+        scriptSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://cdnjs.cloudflare.com",
+          "https://cdn.jsdelivr.net"
+        ],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com"],
+      },
+    },
+  })
+);
+
 app.use(cors({
   origin: ['http://localhost:10000', 'https://yourdomain.com'], // allow multiple
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -33,10 +53,7 @@ const limiter = rateLimit({
   headers: true
 });
 
-app.use('/',limiter)
-app.get('/',(req,res)=>{
-    res.status(200).render("t1",{})
-})
+app.use('/',limiter,router)
 
 app.use(morgan('combined'));
 
