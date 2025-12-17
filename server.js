@@ -13,8 +13,15 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-app.use(express.static(path.join(__dirname, 'static_files/')))
-app.use(express.static(path.join(__dirname, 'static_scripts/')))
+app.use((req, res, next) => {
+    if (req.secure) {
+        return res.redirect('http://' + req.headers.host + req.url);
+    }
+    next();
+});
+
+
+app.use(express.static(path.join(__dirname)))
 app.use(express.urlencoded({ extended: true }));
 
 app.set('views',path.join(__dirname,'views'))
@@ -39,7 +46,7 @@ app.use(
 );
 
 app.use(cors({
-  origin: ['http://localhost:10000', 'https://yourdomain.com'], // allow multiple
+  origin: ['http://localhost:10000'], // allow multiple
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true // allow cookies and Authorization headers
