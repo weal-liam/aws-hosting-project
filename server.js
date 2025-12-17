@@ -13,7 +13,8 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-app.use(express.static(path.join(__dirname)))
+app.use(express.static(path.join(__dirname, 'static_files/')))
+app.use(express.static(path.join(__dirname, 'static_scripts/')))
 app.use(express.urlencoded({ extended: true }));
 
 app.set('views',path.join(__dirname,'views'))
