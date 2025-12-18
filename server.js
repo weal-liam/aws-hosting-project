@@ -7,29 +7,26 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const router = require('./routes');
+const {contentSecurityPolicy} = require("helmet");
 require('dotenv').config();
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-app.use((req, res, next) => {
-    if (req.secure) {
-        return res.redirect('http://' + req.headers.host + req.url);
-    }
-    next();
-});
-
-
-app.use(express.static(path.join(__dirname)))
+app.use(express.static(path.join(process.cwd())));
 app.use(express.urlencoded({ extended: true }));
 
-app.set('views',path.join(__dirname,'views'))
+app.set('views',path.join(process.cwd(),'views'))
 app.set('view engine','ejs')
+
+app.set('trust proxy', true);
 
 app.use(
   helmet({
-    contentSecurityPolicy: {
+    contentSecurityPolicy: false
+      // uncomment in https
+      /*{
       directives: {
         defaultSrc: ["'self'"],
         imgSrc: ["'self'", "data:", "https://images.unsplash.com"],
@@ -41,12 +38,12 @@ app.use(
         ],
         styleSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com"],
       },
-    },
+    },*/
   })
 );
 
 app.use(cors({
-  origin: ['http://localhost:10000'], // allow multiple
+  origin: ['http://localhost:10000', '*'], // allow multiple
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true // allow cookies and Authorization headers
